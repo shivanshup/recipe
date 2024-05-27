@@ -44,16 +44,20 @@ def create_superuser():
         username = "admin"
         email = "admin@admin.in"
         password = "admin"
-        subprocess.check_call([sys.executable, 'manage.py', 'createsuperuser',
-                               '--username', username, '--email', email, '--noinput'])
-        os.environ['DJANGO_SUPERUSER_PASSWORD'] = password
-        print("Superuser created successfully.")
-    except subprocess.CalledProcessError:
-        print("Failed to create superuser.")
-        sys.exit(1)
+        import django
+        django.setup()
+
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+
+        if User.objects.filter(username=username).exists():
+            print(f"Superuser with username '{username}' already exists.")
+        else:
+            User.objects.create_superuser(username=username, email=email, password=password)
+            print("Superuser created successfully.")
     except Exception as e:
-        print(f"An error occurred: {e}")
-        sys.exit(1)
+        print("Error occured"+ e)
+        
 
 if __name__ == "__main__":
     install_requirements()
