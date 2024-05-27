@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Submission Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .form-container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        margin-bottom: 20px;
+      }
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .form-group input[type="text"],
+      .form-group input[type="file"],
+      .form-group textarea {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .form-group textarea {
+        resize: vertical;
+      }
+      .submit-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .submit-btn:hover {
+        background-color: #0056b3;
+      }
+      table {
+        width: 80%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+      td img {
+        max-width: 150px;
+        height: auto;
+        display: block;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Update Recipe</h2>
+      <form
+        
+        method="post"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="recipe-name">Recipe Name: </label>
+          <input type="text" id="recipe-name" name="recipe_name" value="{{recipes.recipe_name}}" required />
+        </div>
+        <div class="form-group">
+          <label for="recipe-image">Recipe Image:</label>
+          <input
+            type="file"
+            id="recipe-image"
+            name="recipe_image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="recipe-description" >Recipe Description:</label>
+          <textarea
+            id="recipe-description"
+            name="recipe_description"
+            rows="5"
+            required
+          > {{ recipes.recipe_description }}</textarea>
+        </div>
+        <button type="submit" class="submit-btn">Update Recipe</button>
+      </form>
+    </div>
+    <div class="recipes-container">
+      
+    </div>
+  </body>
+</html>
