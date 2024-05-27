@@ -44,6 +44,8 @@ def create_superuser():
         username = "admin"
         email = "admin@admin.in"
         password = "admin"
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')  # Replace with your settings module
+
         import django
         django.setup()
 
