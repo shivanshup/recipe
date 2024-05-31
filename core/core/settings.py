@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-yh7s86*ax*hgc2b@jd0$tuqm3o0(i5^946jk)ibpyyq4l4vc&a
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS	= ["https://recipe-flf2.onrender.com"]
+CSRF_TRUSTED_ORIGINS	= ["https://recipe-flf2.onrender.com","https://1481-103-69-25-23.ngrok-free.app"]
 
 
 # Application definition
@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'project',
+        'USER': 'avnadmin',
+        'PASSWORD': 'AVNS_TIk3N3D4864bmtpi02Y',
+        'HOST': 'pg-db-shivanshupadhyay000-5339.f.aivencloud.com',
+        'PORT': '26115'
     }
 }
 
@@ -137,3 +141,4 @@ MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL='/login'

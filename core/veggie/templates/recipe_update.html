@@ -88,15 +88,17 @@
   <body>
     <div class="form-container">
       <h2>Update Recipe</h2>
-      <form
-        
-        method="post"
-        enctype="multipart/form-data"
-      >
+      <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
           <label for="recipe-name">Recipe Name: </label>
-          <input type="text" id="recipe-name" name="recipe_name" value="{{recipes.recipe_name}}" required />
+          <input
+            type="text"
+            id="recipe-name"
+            name="recipe_name"
+            value="{{recipes.recipe_name}}"
+            required
+          />
         </div>
         <div class="form-group">
           <label for="recipe-image">Recipe Image:</label>
@@ -105,23 +107,24 @@
             id="recipe-image"
             name="recipe_image"
             accept="image/*"
-            required
+            value="{{recipes.recipe_image}}"
           />
         </div>
         <div class="form-group">
-          <label for="recipe-description" >Recipe Description:</label>
+          <label for="recipe-description">Recipe Description:</label>
           <textarea
             id="recipe-description"
             name="recipe_description"
             rows="5"
             required
-          > {{ recipes.recipe_description }}</textarea>
+          >
+ {{ recipes.recipe_description }}</textarea
+          >
         </div>
         <button type="submit" class="submit-btn">Update Recipe</button>
       </form>
     </div>
-    <div class="recipes-container">
-      
-    </div>
+   
+    <div class="recipes-container"></div>
   </body>
 </html>
